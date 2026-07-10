@@ -1,0 +1,8 @@
+{
+  "name": "parsa-spike-demo",
+  "version": "0.1.0",
+  "description": "Parsa spike demo repo — target for the AI delivery loop.",
+  "type": "module",
+  "scripts": { "test": "node --test", "lint": "node --check src/*.js" },
+  "license": "MIT"
+}
