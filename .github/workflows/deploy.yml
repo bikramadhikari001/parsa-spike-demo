@@ -1,0 +1,21 @@
+name: Deploy
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: npm test
+      - run: echo "🚀 Deployed $GITHUB_SHA to STAGING"
+  deploy-production:
+    needs: deploy-staging
+    runs-on: ubuntu-latest
+    environment: production   # required-reviewer gate: blocks until a human approves
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "🚀 Deployed $GITHUB_SHA to PRODUCTION (human-approved)"
